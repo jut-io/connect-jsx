@@ -16,7 +16,7 @@ compilation in the browser.
 
 Uses [react-tools](https://github.com/facebook/react) to do the actual
 transformation and [send](https://github.com/visionmedia/send) to do
-the heavy lifting of the
+the heavy lifting of the actual static file serving.
 
 
 Installation
