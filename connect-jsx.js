@@ -35,7 +35,13 @@ module.exports = function connect_jsx(root, options) {
 
         pathname += 'x';
 
+        var _write = res.write;
+        var _end = res.end;
+
         function error(err) {
+            res.write = _write;
+            res.end = _end;
+
             if (err.status === 404) {
                 next();
             } else {
@@ -49,13 +55,11 @@ module.exports = function connect_jsx(root, options) {
         // response.
         var jsx = '';
         var _encoding;
-        var _write = res.write;
         res.write = function(chunk, encoding) {
             _encoding = encoding;
             jsx += chunk;
         };
 
-        var _end = res.end;
         res.end = function() {
             try {
                 var js = React.transform(jsx);
