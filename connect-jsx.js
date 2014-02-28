@@ -64,6 +64,7 @@ module.exports = function connect_jsx(root, options) {
             try {
                 var js = React.transform(jsx);
                 res.setHeader('Content-Length', js.length);
+                res.setHeader('Connect-Jsx-Source-Path', url.parse(req.url).pathname);
                 res.setHeader('Content-Type', content_type + (charset ? '; charset=' + charset : ''));
                 _write.call(res, js, _encoding);
 

@@ -27,6 +27,7 @@ describe('connect-jsx middleware', function() {
 
         request('http://localhost:9000/test1.js', function(err, res, body) {
             expect(res.statusCode).equal(200);
+            expect(res.headers['connect-jsx-source-path']).equals('/test1.js');
             expect(body).eql(js);
             done();
         });
@@ -35,6 +36,7 @@ describe('connect-jsx middleware', function() {
     it('does not convert requests with .jsx extension', function(done) {
         request('http://localhost:9000/test1.jsx', function(err, res, body) {
             expect(res.statusCode).equal(404);
+            expect(res.headers['connect-jsx-source-path']).is.undefined;
             done();
         });
     });
@@ -42,6 +44,7 @@ describe('connect-jsx middleware', function() {
     it('does not convert requests for .js files without jsx', function(done) {
         request('http://localhost:9000/test2.js', function(err, res, body) {
             expect(res.statusCode).equal(404);
+            expect(res.headers['connect-jsx-source-path']).is.undefined;
             done();
         });
     });
@@ -58,6 +61,7 @@ describe('connect-jsx middleware', function() {
 
         request('http://localhost:9000/test1.jsx', function(err, res, body) {
             expect(res.statusCode).equal(200);
+            expect(res.headers['connect-jsx-source-path']).is.undefined;
             expect(body).equal(jsx);
             done();
         });
@@ -69,6 +73,7 @@ describe('connect-jsx middleware', function() {
 
         request('http://localhost:9000/test2.js', function(err, res, body) {
             expect(res.statusCode).equal(200);
+            expect(res.headers['connect-jsx-source-path']).is.undefined;
             expect(body).equal(js);
             done();
         });
