@@ -1,6 +1,6 @@
 {
   "name": "connect-jsx",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Middleware to convert react jsx files to javascript on the fly.",
   "main": "index.js",
   "scripts": {
