@@ -61,20 +61,17 @@ module.exports = function connect_jsx(root, options) {
         };
 
         res.end = function() {
+            var js;
+            var source_path = url.parse(req.url).pathname;
             try {
-                var js = React.transform(jsx);
-                res.setHeader('Content-Length', js.length);
-                res.setHeader('Connect-Jsx-Source-Path', url.parse(req.url).pathname);
-                res.setHeader('Content-Type', content_type + (charset ? '; charset=' + charset : ''));
-                _write.call(res, js, _encoding);
-
+                js = React.transform(jsx);
             } catch (err) {
-                var body = err.toString();
-                res.setHeader('Content-Length', body.length);
-                res.statusCode = 500;
-                _write.call(res, body);
+                js = 'throw new Error("Connect-Jsx transforming ' + source_path + ': ' + err.message + '");';
             }
-
+            res.setHeader('Content-Length', js.length);
+            res.setHeader('Connect-Jsx-Source-Path', source_path);
+            res.setHeader('Content-Type', content_type + (charset ? '; charset=' + charset : ''));
+            _write.call(res, js, _encoding);
             _end.call(res);
         };
 
