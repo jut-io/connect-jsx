@@ -81,7 +81,8 @@ describe('connect-jsx middleware', function() {
 
     it('handles conversion errors', function(done) {
         request('http://localhost:9000/bad1.js', function(err, res, body) {
-            expect(res.statusCode).equal(500);
+            expect(res.statusCode).equal(200);
+            expect(body).match(/throw new Error/);
             done();
         });
     });
