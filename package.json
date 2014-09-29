@@ -1,8 +1,14 @@
 {
   "name": "connect-jsx",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "description": "Middleware to convert react jsx files to javascript on the fly.",
   "main": "index.js",
+  "contributors": [
+      "Michael Demmer <demmer@jut.io>"
+  ],
+  "engines": {
+      "node": ">= 0.10.x"
+  },
   "scripts": {
     "test": "./node_modules/mocha/bin/mocha -R spec"
   },
