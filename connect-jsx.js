@@ -75,8 +75,7 @@ module.exports = function connect_jsx(root, options) {
             _end.call(res);
         };
 
-        send(req, pathname)
-            .root(root)
+        send(req, pathname, {root: root})
             .on('error', error)
             .on('directory', error)
             .pipe(res);
