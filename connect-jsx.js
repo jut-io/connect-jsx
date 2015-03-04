@@ -4,6 +4,7 @@ var url = require('url');
 var mime = require('mime');
 var send = require('send');
 var React = require('react-tools');
+var Buffer = require('buffer').Buffer;
 
 /*
  * jsx: Automatically convert .jsx files to .js files when requested.
@@ -68,7 +69,7 @@ module.exports = function connect_jsx(root, options) {
             } catch (err) {
                 js = 'throw new Error("Connect-Jsx transforming ' + source_path + ': ' + err.message + '");';
             }
-            res.setHeader('Content-Length', js.length);
+            res.setHeader('Content-Length', Buffer.byteLength(js));
             res.setHeader('Connect-Jsx-Source-Path', source_path);
             res.setHeader('Content-Type', content_type + (charset ? '; charset=' + charset : ''));
             _write.call(res, js, _encoding);
