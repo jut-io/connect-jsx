@@ -86,4 +86,19 @@ describe('connect-jsx middleware', function() {
             done();
         });
     });
+
+    it('converts properly if jsx files contain special characters', function(done) {
+        var jsx = fs.readFileSync(path.join(__dirname, 'root/test-special.jsx'),
+                                  {encoding: 'utf8'});
+        var js = React.transform(jsx);
+
+        request('http://localhost:9000/test-special.js', function(err, res, body) {
+            expect(res.statusCode).equal(200);
+            expect(res.headers['connect-jsx-source-path']).equals('/test-special.js');
+            expect(body).eql(js);
+            done();
+        });
+    });
+
+
 });
