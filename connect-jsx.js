@@ -17,6 +17,7 @@ var Buffer = require('buffer').Buffer;
  * Modeled heavily after connect.static
  */
 module.exports = function connect_jsx(root, options) {
+    options = options || {};
 
     return function jsx(req, res, next) {
         if ('GET' !== req.method && 'HEAD' !== req.method) {
