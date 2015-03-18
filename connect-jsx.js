@@ -65,7 +65,11 @@ module.exports = function connect_jsx(root, options) {
             var js;
             var source_path = url.parse(req.url).pathname;
             try {
-                js = React.transform(jsx);
+                js = React.transform(jsx, {
+                    harmony: !!options.harmony,
+                    sourceMap: !!options.sourceMap,
+                    sourceFilename: options.sourceMap ? pathname : null
+                });
             } catch (err) {
                 js = 'throw new Error("Connect-Jsx transforming ' + source_path + ': ' + err.message + '");';
             }
