@@ -29,9 +29,9 @@
   },
   "homepage": "https://github.com/jut-io/connect-jsx",
   "dependencies": {
-    "mime": "~1.2.11",
+    "mime": ">=1.2.11",
     "react-tools": ">=0.12.x",
-    "send": "^0.8.4"
+    "send": ">=0.8.4"
   },
   "devDependencies": {
     "chai": "~1.9.0",
