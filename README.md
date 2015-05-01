@@ -1,4 +1,4 @@
-connect-jsx
+connect-jsx [![Build Status: Linux](https://travis-ci.org/jut-io/connect-jsx.png?branch=master)](https://travis-ci.org/jut-io/connect-jsx)
 ===========
 
 Middleware to convert react jsx files to javascript on the fly.
